@@ -3,7 +3,7 @@ import path from "path";
 import ProductManager from "./ProductManager.js";
 
 const app = express();
-const port = 3000;
+const port = 8080;
 
 app.use(express.json());
 app.use(express.urlencoded({
@@ -49,21 +49,21 @@ app.post("/productos", async (req, res) => {
 
 //Ruta Producto por id
 
-app.get('/productos/:id', async (req, res) => {
+app.get("/productos/:pid", async (req, res) => {
   try {
-    const products = await productManager.getProducts();
-    console.log(products);
-    const id = req.params.id;
-    const product = await products.find((product) => product.id === id);
+    const pid = req.params.pid;
+    const product = await productManager.getProductById(pid);
     if (!product) {
-      res.status(404).send("Producto no encontrado")
+      const errorMessage = {
+        error: "El Producto No Existe"
+      };
+      res.status(500).send(errorMessage);
     }
-    res.json(product);
-    
+    res.send(product);
   } catch (err) {
     res.status(500).send(err.message);
   }
-});
+}); 
 
 
 

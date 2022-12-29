@@ -69,8 +69,7 @@ class ProductManager {
       throw err;
     }
   }
-
-
+  
   async readFile() {
     return new Promise((resolve, reject) => {
       fs.readFile(this.path, "utf-8", (err, data) => {
@@ -94,5 +93,7 @@ class ProductManager {
     });
   }
 }
+
+
 
 export default ProductManager;

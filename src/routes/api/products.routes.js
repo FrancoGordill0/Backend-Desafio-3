@@ -51,48 +51,24 @@ router.get("/:id", async (req, res) => {
     }
 });
 
-router.put("/:id", async (req, res) => {
-    try {
-        const id = req.params.id;
-        const {title, description, price, stock} = req.body;
-        await productManager.updateProduct(
-            {title, description, price, stock},
-        {
-            where: {
-                id,
-            },
-        }
+
+router.put("/update/:id", async (req, res) => {
+    res.send(req.body)
+     try {
+        const id = Number(req.params.id);
+        const { title, description, code, price, status, stock, category, thumbnail } = req.body;
+        await productManager.updateProduct(id,
+            { id, title, description, code, price, status, stock, category, thumbnail },
+           
         )
         res.status(200).send('Producto Actualizado')
     } catch (err) {
         res.status(400).send('No se pudo actualizar el archivo');
-        console.log(err);
-    }
+    } 
 })
 
-/* router.put("/:id", async (req, res) => {
-    const pid = req.params.id;
-    const newProduct = req.body;
 
-    try {
-        const products = productManager.getProducts();
-        const productFindIndex = products.findIndex((product) => product.id === pid);
-        if (productFindIndex === -1){
-            res.status(404).send("Producto no encontrado");
-            return;
-        } else {
-            products[productFindIndex] = newProduct;
-            await productManager.updateProduct(products);
-            res.send(newProduct)
-            res.status(200).send('Producto Actualizado')
-        }
-    } catch (err) {
-        res.status(400).send('No se pudo actualizar el archivo');
-        console.log(err);
-    }
-}) */
-
-router.delete("/:id", async (req,res) => {
+router.delete("/delete/:id", async (req,res) => {
     try {
         const pid = req.params.id;
         await productManager.deleteProduct(pid)
@@ -103,5 +79,7 @@ router.delete("/:id", async (req,res) => {
         }
     }
 })
+
+
 
 export default router

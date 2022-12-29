@@ -45,13 +45,14 @@
 	},
 	{
 		"id": 5,
-		"title": "producto nuevo 5",
-		"description": "producto nuevo",
+		"title": "producto 5 ultimo actualizado",
+		"description": "producto nuevo 5",
 		"code": "15611523as",
-		"price": "1500",
+		"price": "12000",
 		"status": "true",
 		"stock": "120",
 		"category": "productos",
 		"thumbnail": "nadanada"
 	}
+	
 ]

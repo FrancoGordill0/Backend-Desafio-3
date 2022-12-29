@@ -1,29 +1,29 @@
 import fs from "fs";
+import path from 'path'
+import {fileURLToPath} from 'url'
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 class ProductManager {
+  
   constructor(path) {
     this.path = path;
   }
 
-  async addProduct(product) {
+  async addProducts(product) {
     try {
       const data = await this.readFile();
       if (data) {
         this.products = JSON.parse(data);
       }
-      product.id = this.products.length
-        ? this.products.reduce(
-            (max, product) => (product.id > max ? product.id : max),
-            0
-          ) + 1
-        : 1;
+      product.id = this.products.length ? this.products.reduce((max, product) => (product.id > max ? product.id : max),0) + 1 : 1;
       this.products.push(product);
 
       await this.writeFile(this.products);
     } catch (err) {
       throw err;
     }
-  }
+  } 
 
   async getProducts() {
     try {
@@ -39,7 +39,7 @@ class ProductManager {
     try {
       const data = await this.readFile();
       this.products = JSON.parse(data);
-      const product = this.products.find((product) => product.id === id);
+      const product = this.products.find((product) => product.id == id);
       return product;
     } catch (err) {
       throw err;
@@ -50,7 +50,7 @@ class ProductManager {
     try {
       const data = await this.readFile();
       this.products = JSON.parse(data);
-      const index = this.products.findIndex((product) => product.id === id);
+      const index = this.products.findIndex((product) => product.id == id);
       this.products[index] = product;
       await this.writeFile(this.products);
     } catch (err) {
@@ -62,7 +62,7 @@ class ProductManager {
     try {
       const data = await this.readFile();
       this.products = JSON.parse(data);
-      const index = this.products.findIndex((product) => product.id === id);
+      const index = this.products.findIndex((product) => product.id == id);
       this.products.splice(index, 1);
       await this.writeFile(this.products);
     } catch (err) {

@@ -1,5 +1,6 @@
 {
   "name": "desafio-3",
+  "type":"module",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -7,7 +8,6 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon src/app.js"
   },
-  "type": "module",
   "keywords": [],
   "author": "",
   "license": "ISC",

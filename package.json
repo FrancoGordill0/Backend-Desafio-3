@@ -1,6 +1,6 @@
 {
   "name": "desafio-3",
-  "type":"module",
+  "type": "module",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -13,6 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.18.2",
-    "nodemon": "^2.0.20"
+    "nodemon": "^2.0.20",
+    "uuid": "^9.0.0"
   }
 }
